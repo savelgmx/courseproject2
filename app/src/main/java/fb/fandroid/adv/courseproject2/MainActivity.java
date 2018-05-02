@@ -2,6 +2,7 @@ package fb.fandroid.adv.courseproject2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 
 /*
 Задание 1.
@@ -34,9 +35,26 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+       /*Добавляем метод, который берёт данные из ресурсов меню
+       и преобразует их в пункты меню на экране.
+       По английски "inflate" переводится как надувать,
+       т.е. по замыслу разработчиков Android, мы как бы надуваем данными объект, например, меню.
+       Но на самом деле слово "inflate" происходит от словосочетания in flat - в квартиру.
+       Существует старинная традиция запускать в квартиру первым кота,
+       который исследует все закоулки дома и заявляет о своём согласии жить в нём.
+       Так и мы запускаем данные из XML-файла в объект MenuInflater.
+        */
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 }
