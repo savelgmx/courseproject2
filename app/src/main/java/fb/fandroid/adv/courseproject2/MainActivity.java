@@ -3,6 +3,8 @@ package fb.fandroid.adv.courseproject2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 /*
 Задание 1.
@@ -35,6 +37,9 @@ import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity {
 
+    private void showMessage(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,6 +54,29 @@ public class MainActivity extends AppCompatActivity {
         */
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+
+    //Для обработки нажатий пунктов меню служит другой метод onOptionsItemSelected()
+     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+         // получим идентификатор выбранного пункта меню
+         int id = item.getItemId();
+
+         // Операции для выбранного пункта меню
+         switch (id) {
+             case R.id.action_settings:
+                 showMessage("Вы выбрали пункт Настройки");
+                 return true;
+             case R.id.action_search:
+                 showMessage("Вы выбрали Поиск");
+                 return true;
+             case R.id.action_exit:
+                 showMessage("Вы выбрали Выход");
+                 return true;
+             default:
+                 return super.onOptionsItemSelected(item);
+         }
     }
 
     @Override
