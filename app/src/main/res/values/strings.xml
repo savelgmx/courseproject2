@@ -4,6 +4,9 @@
     <string name="action_search">Поиск</string>
     <string name="action_exit">Выход</string>
 
+    <string name="search_button">Поиск</string>
+    <string name="one_hint">Произвольный текст для ввода</string>
+
     <string name="rb_google">Google</string>
     <string name="rb_yandex">Yandex</string>
     <string name="rb_bing">Bing</string>
