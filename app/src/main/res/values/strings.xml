@@ -3,4 +3,8 @@
     <string name="action_settings">Настройки</string>
     <string name="action_search">Поиск</string>
     <string name="action_exit">Выход</string>
+
+    <string name="rb_google">Google</string>
+    <string name="rb_yandex">Yandex</string>
+    <string name="rb_bing">Bing</string>
 </resources>
