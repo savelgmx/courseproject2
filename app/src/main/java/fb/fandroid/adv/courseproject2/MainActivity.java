@@ -1,5 +1,7 @@
 package fb.fandroid.adv.courseproject2;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -71,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
                  return true;
              case R.id.action_search:
                  showMessage("Вы выбрали Поиск");
+
+                 Uri uri = Uri.parse("http://google.com/search?q=haru hi");
+                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                 startActivity(intent);
+
                  return true;
              case R.id.action_exit:
                  showMessage("Вы выбрали Выход");
