@@ -11,4 +11,5 @@ public class SettingsActivity extends SingleFragmentActivity {
     protected Fragment getFragment() {
         return null;
     }
+
 }

@@ -8,21 +8,34 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <RadioButton
-        android:id="@+id/rbGoogle"
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rb_google" />
 
-    <RadioButton
-        android:id="@+id/rbYandex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rb_yandex" />
 
-    <RadioButton
-        android:id="@+id/rbBing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rb_bing" />
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rb_google" />
+
+        <RadioButton
+            android:id="@+id/rbYandex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rb_yandex" />
+
+        <RadioButton
+            android:id="@+id/rbBing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rb_bing" />
+
+    </RadioGroup>
+
 </LinearLayout>

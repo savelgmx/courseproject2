@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
          switch (id) {
              case R.id.action_settings:
                  showMessage("Вы выбрали пункт Настройки");
+
                  return true;
              case R.id.action_search:
                  showMessage("Вы выбрали Поиск");
