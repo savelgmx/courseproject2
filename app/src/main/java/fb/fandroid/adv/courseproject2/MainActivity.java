@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
              case R.id.action_search:
                  showMessage("Вы выбрали Поиск");
 
-                 Uri uri = Uri.parse("http://google.com/search?q=haru hi");
+                 Uri uri = Uri.parse("http://google.com/search?q=haruhi");
                  Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                  startActivity(intent);
 
