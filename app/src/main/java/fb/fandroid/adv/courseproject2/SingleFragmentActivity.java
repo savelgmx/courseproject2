@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 /*
-Абстактый класс базовый для всех трех фрагментов данного приложения
+Абстактный класс базовый для всех трех фрагментов данного приложения
 На его основе может быть произвольноее число фрагментов
 Инициализирует контейнер для фрагментов в методе OnCreate
 Заканчивает работу приложения если Back button pressed

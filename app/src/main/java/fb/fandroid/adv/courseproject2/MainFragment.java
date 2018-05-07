@@ -32,6 +32,19 @@ public class MainFragment extends Fragment {
     private void showMessage(String string) {
         Toast.makeText(getActivity(), string, Toast.LENGTH_LONG).show();
     }
+/*проверка доступности Internet соединения
+public static boolean isOnline(Context context)
+{
+    ConnectivityManager cm =
+            (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+    if (netInfo != null && netInfo.isConnectedOrConnecting())
+    {
+        return true;
+    }
+    return false;
+}
+*/
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -54,11 +67,20 @@ public class MainFragment extends Fragment {
         // Операции для выбранного пункта меню
         switch (id) {
             case R.id.action_settings:
-                showMessage("Вы выбрали пункт Настройки");
+               // showMessage("Вы выбрали пункт Настройки");
+
+                //---launch settings fragment----
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, SettingsFragment.newInstance())
+                        .commit();
+                //----end of launch transaction
+
 
                 return true;
             case R.id.action_search:
-                showMessage("Вы выбрали Поиск");
+                //showMessage("Вы выбрали Поиск");
 
                 Uri uri = Uri.parse("http://google.com/search?q=haruhi");
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
