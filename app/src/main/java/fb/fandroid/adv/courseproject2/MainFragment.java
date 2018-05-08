@@ -1,6 +1,9 @@
 package fb.fandroid.adv.courseproject2;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,7 +35,7 @@ public class MainFragment extends Fragment {
     private void showMessage(String string) {
         Toast.makeText(getActivity(), string, Toast.LENGTH_LONG).show();
     }
-/*проверка доступности Internet соединения
+/*проверка доступности Internet соединения*/
 public static boolean isOnline(Context context)
 {
     ConnectivityManager cm =
@@ -44,7 +47,7 @@ public static boolean isOnline(Context context)
     }
     return false;
 }
-*/
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -74,17 +77,20 @@ public static boolean isOnline(Context context)
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, SettingsFragment.newInstance())
+                        .addToBackStack(SettingsFragment.class.getName())
                         .commit();
-                //----end of launch transaction
+                //----end of launch transaction+-
 
 
                 return true;
             case R.id.action_search:
                 //showMessage("Вы выбрали Поиск");
-
-                Uri uri = Uri.parse("http://google.com/search?q=haruhi");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                    if( isOnline(getContext())) {
+                        Uri uri = Uri.parse("http://google.com/search?q=haruhi");
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else showMessage("Доступ в интернет отсутствует");
 
                 return true;
             case R.id.action_exit:
