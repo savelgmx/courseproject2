@@ -1,6 +1,7 @@
 package fb.fandroid.adv.courseproject2;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.content.Context;
@@ -13,12 +14,13 @@ import static android.content.Context.MODE_PRIVATE;
  * предназначен для хранения настроек на предпочитаемую поисковую машину
  * google yandex bing
  */
-public class SharedPreferencesHelper {
+public class SharedPreferencesHelper extends AppCompatActivity{
     // это будет именем файла настроек
     public static final String APP_PREFERENCES = "mysettings";
     final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+    private RadioGroup radioGroup;
 
-   @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fr_settings);
@@ -41,7 +43,7 @@ public class SharedPreferencesHelper {
         }
     };
 
-    private void SavePreferences(String key, int value) {
+    public void SavePreferences(String key, int value) {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 APP_PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -49,7 +51,7 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
-    private void LoadPreferences() {
+   public void LoadPreferences() {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 APP_PREFERENCES, MODE_PRIVATE);
         int savedRadioIndex = sharedPreferences.getInt(

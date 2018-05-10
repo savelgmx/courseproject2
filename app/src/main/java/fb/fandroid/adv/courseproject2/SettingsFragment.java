@@ -22,6 +22,8 @@ public class SettingsFragment extends Fragment {
 
     private RadioGroup radioGroup;
 
+    public SharedPreferencesHelper mSharedPreferencesHelper;
+
     public static SettingsFragment newInstance() {
         Bundle args = new Bundle();
         SettingsFragment fragment = new SettingsFragment();
@@ -54,6 +56,7 @@ public class SettingsFragment extends Fragment {
                     switch (checkedId) {
                         case R.id.rbGoogle:
                             //todo write preferred search engine
+                            mSharedPreferencesHelper.LoadPreferences();
                             break;
 
                         case R.id.rbYandex:
