@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 /**
@@ -36,23 +37,32 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+
+        mSharedPreferencesHelper = new SharedPreferencesHelper();
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
 
+        mSharedPreferencesHelper.LoadPreferences();
         return view;
     }
 
     /**
      * Listener для отслеживания выбора RadioButton
      */
-    private final RadioGroup.OnCheckedChangeListener onCheckedChangeListener =
-            new RadioGroup.OnCheckedChangeListener() {
+    private final RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
 
 
 
+                        RadioButton checkedRadioButton = (RadioButton) radioGroup
+                                .findViewById(checkedId);
+                        int checkedIndex = radioGroup.indexOfChild(checkedRadioButton);
+
+                        mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedIndex);
+
+                    /*
                     switch (checkedId) {
                         case R.id.rbGoogle:
                             //todo write preferred search engine
@@ -70,6 +80,8 @@ public class SettingsFragment extends Fragment {
                         default:
                             throw new IllegalArgumentException("Invalid id: " + checkedId);
                     }
+
+                    */
 
                     Context context = getActivity();
 
