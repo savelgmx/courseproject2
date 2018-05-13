@@ -39,7 +39,6 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
-
         return view;
     }
 
@@ -56,7 +55,8 @@ public class SettingsFragment extends Fragment {
                     switch (checkedId) {
                         case R.id.rbGoogle:
                             //todo write preferred search engine
-                            mSharedPreferencesHelper.LoadPreferences();
+
+                         //   mSharedPreferencesHelper.LoadPreferences();
                             break;
 
                         case R.id.rbYandex:
