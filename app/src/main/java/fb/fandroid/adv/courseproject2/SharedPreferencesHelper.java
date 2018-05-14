@@ -1,48 +1,66 @@
 package fb.fandroid.adv.courseproject2;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import static android.content.Context.MODE_PRIVATE;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 08.05.2018.
  * предназначен для хранения настроек на предпочитаемую поисковую машину
  * google yandex bing
  */
-public class SharedPreferencesHelper extends AppCompatActivity{
-    // это будет именем файла настроек
-    public static final String APP_PREFERENCES = "mysettings";
-    final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
-    private RadioGroup radioGroup;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fr_settings);
+public class SharedPreferencesHelper {
+    public static final String SHARED_PREF_NAME = "SHARED_PREF_NAME";
+    public static final String USERS_KEY = "USERS_KEY";
+    public static final Type USERS_TYPE = new TypeToken<List<User>>() {
+    }.getType();
 
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        radioGroup.setOnCheckedChangeListener(radioGroupOnCheckedChangeListener);
 
-        LoadPreferences();
+    private SharedPreferences mSharedPreferences;
+    private Gson mGson = new Gson();
+
+    public SharedPreferencesHelper(Context context) {
+        mSharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
+    public List<User> getUsers() {
+        List<User> users = mGson.fromJson(mSharedPreferences.getString(USERS_KEY, ""), USERS_TYPE);
+        return users == null ? new ArrayList<User>() : users;
+    }
 
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-            RadioButton checkedRadioButton = (RadioButton) radioGroup.findViewById(checkedId);
-            int checkedIndex = radioGroup.indexOfChild(checkedRadioButton);
-
-            SavePreferences(KEY_RADIOBUTTON_INDEX, checkedIndex);
+    public boolean addUser(User user) {
+        List<User> users = getUsers();
+        for (User u : users) {
+            if (u.getLogin().equalsIgnoreCase(user.getLogin())) {
+                return false;
+            }
         }
-    };
+        users.add(user);
+        mSharedPreferences.edit().putString(USERS_KEY, mGson.toJson(users, USERS_TYPE)).apply();
+        return true;
+    }
 
+    public void SavePreferences(String key,int value){
+        mSharedPreferences.edit().putString(key, mGson.toJson(key,value))
+                .apply();
+
+    }
+
+    public void LoadPreferences(){
+
+    }
+}
+
+
+
+/*
     public void SavePreferences(String key, int value) {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 APP_PREFERENCES, MODE_PRIVATE);
@@ -61,5 +79,6 @@ public class SharedPreferencesHelper extends AppCompatActivity{
         savedCheckedRadioButton.setChecked(true);
     }
 
-
+/
 }
+*/
