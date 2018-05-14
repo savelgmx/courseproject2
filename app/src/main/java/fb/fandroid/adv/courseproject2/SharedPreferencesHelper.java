@@ -14,7 +14,12 @@ import java.util.List;
  * Created by Administrator on 08.05.2018.
  * предназначен для хранения настроек на предпочитаемую поисковую машину
  * google yandex bing
+JSON {
+ "rButtonChecked":true,
+ "rButtonId":"1"
+ }
  */
+
 
 public class SharedPreferencesHelper {
     public static final String SHARED_PREF_NAME = "SHARED_PREF_NAME";
@@ -22,6 +27,7 @@ public class SharedPreferencesHelper {
     public static final Type USERS_TYPE = new TypeToken<List<User>>() {
     }.getType();
 
+//
 
     private SharedPreferences mSharedPreferences;
     private Gson mGson = new Gson();
