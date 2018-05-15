@@ -24,7 +24,7 @@ JSON {
 public class SharedPreferencesHelper {
     public static final String SHARED_PREF_NAME = "SHARED_PREF_NAME";
     public static final String USERS_KEY = "USERS_KEY";
-    public static final Type USERS_TYPE = new TypeToken<List<User>>() {
+    public static final Type USERS_TYPE = new TypeToken<List<Rbutton>>() {
     }.getType();
 
 //
@@ -36,14 +36,14 @@ public class SharedPreferencesHelper {
         mSharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public List<User> getUsers() {
-        List<User> users = mGson.fromJson(mSharedPreferences.getString(USERS_KEY, ""), USERS_TYPE);
-        return users == null ? new ArrayList<User>() : users;
+    public List<Rbutton> getRbuttons() {
+        List<Rbutton> users = mGson.fromJson(mSharedPreferences.getString(USERS_KEY, ""), USERS_TYPE);
+        return users == null ? new ArrayList<Rbutton>() : users;
     }
 
-    public boolean addUser(User user) {
-        List<User> users = getUsers();
-        for (User u : users) {
+    public boolean addRbutton(Rbutton user) {
+        List<Rbutton> users = getRbuttons();
+        for (Rbutton u : users) {
             if (u.getLogin().equalsIgnoreCase(user.getLogin())) {
                 return false;
             }
