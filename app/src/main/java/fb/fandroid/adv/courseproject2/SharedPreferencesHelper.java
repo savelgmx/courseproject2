@@ -23,8 +23,8 @@ JSON {
 
 public class SharedPreferencesHelper {
     public static final String SHARED_PREF_NAME = "SHARED_PREF_NAME";
-    public static final String USERS_KEY = "USERS_KEY";
-    public static final Type USERS_TYPE = new TypeToken<List<Rbutton>>() {
+    public static final String RBUTTONS_KEY = "RBUTTONS_KEY";
+    public static final Type RBUTTONS_TYPE = new TypeToken<List<Rbutton>>() {
     }.getType();
 
 //
@@ -37,31 +37,18 @@ public class SharedPreferencesHelper {
     }
 
     public List<Rbutton> getRbuttons() {
-        List<Rbutton> users = mGson.fromJson(mSharedPreferences.getString(USERS_KEY, ""), USERS_TYPE);
-        return users == null ? new ArrayList<Rbutton>() : users;
+        List<Rbutton> rbuttons = mGson.fromJson(mSharedPreferences.getString(RBUTTONS_KEY, ""), RBUTTONS_TYPE);
+        return rbuttons == null ? new ArrayList<Rbutton>() : rbuttons;
     }
 
-    public boolean addRbutton(Rbutton user) {
-        List<Rbutton> users = getRbuttons();
-        for (Rbutton u : users) {
-            if (u.getLogin().equalsIgnoreCase(user.getLogin())) {
-                return false;
-            }
-        }
-        users.add(user);
-        mSharedPreferences.edit().putString(USERS_KEY, mGson.toJson(users, USERS_TYPE)).apply();
+    public boolean addRbutton(Rbutton rbutton) {
+        List<Rbutton> rbuttons = getRbuttons();
+        rbuttons.add(rbutton);
+        mSharedPreferences.edit().putString(RBUTTONS_KEY, mGson.toJson(rbuttons, RBUTTONS_TYPE)).apply();
         return true;
     }
 
-    public void SavePreferences(String key,int value){
-        mSharedPreferences.edit().putString(key, mGson.toJson(key,value))
-                .apply();
 
-    }
-
-    public void LoadPreferences(){
-
-    }
 }
 
 

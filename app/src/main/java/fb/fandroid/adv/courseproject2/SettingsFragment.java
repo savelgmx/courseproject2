@@ -36,6 +36,11 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+
+
+        mSharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
+
+
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
@@ -55,16 +60,31 @@ public class SettingsFragment extends Fragment {
                     switch (checkedId) {
                         case R.id.rbGoogle:
                             //todo write preferred search engine
-
+                            boolean isGoogle= mSharedPreferencesHelper.addRbutton(
+                                    new Rbutton(
+                                            checkedId,
+                                            true
+                                    ));
                          //   mSharedPreferencesHelper.LoadPreferences();
                             break;
 
                         case R.id.rbYandex:
                             //TODO write preferred search engine
+                            boolean isYandex= mSharedPreferencesHelper.addRbutton(
+                                    new Rbutton(
+                                            checkedId,
+                                            true
+                                    ));
+
                             break;
 
                         case R.id.rbBing:
                             //TODO write preferred search engine
+                            boolean isBing= mSharedPreferencesHelper.addRbutton(
+                                    new Rbutton(
+                                            checkedId,
+                                            true
+                                    ));
 
                              break;
                         default:

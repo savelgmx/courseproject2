@@ -6,21 +6,21 @@ import java.io.Serializable;
 
 public class Rbutton implements Serializable {
 
-	private String rButtonId;
+	private int rButtonId;
 	private boolean rButtonChecked;
 
-	public Rbutton(String buttonID,Boolean buttonChecked ){
+	public Rbutton(int buttonID,boolean buttonChecked ){
 
 		rButtonId=buttonID;
 		rButtonChecked=buttonChecked;
 
 	}
 
-	public void setRButtonId(String rButtonId){
+	public void setRButtonId(int rButtonId){
 		this.rButtonId = rButtonId;
 	}
 
-	public String getRButtonId(){
+	public int getRButtonId(){
 		return rButtonId;
 	}
 
