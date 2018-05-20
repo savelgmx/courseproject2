@@ -38,11 +38,11 @@ public class SettingsFragment extends Fragment {
     {
 
 
-        mSharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
+        mSharedPreferencesHelper = new SharedPreferencesHelper();
 
-        //сначала прочитаем состояние
-        mSharedPreferencesHelper.getRbuttons();
+        //сначала прочитаем состояниеmSharedPreferencesHelper.getRbuttons();getActivity()
 
+        mSharedPreferencesHelper.LoadPreferences();
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
@@ -63,33 +63,30 @@ public class SettingsFragment extends Fragment {
                     switch (checkedId) {
                         case R.id.rbGoogle:
                             //todo write preferred search engine
-                            boolean isGoogle= mSharedPreferencesHelper.addRbutton(
+                          /*  boolean isGoogle= mSharedPreferencesHelper.addRbutton(
                                     new Rbutton(
                                             checkedId,
                                             true
-                                    ));
-                         //   mSharedPreferencesHelper.LoadPreferences();
+                                    ));*/
+                           mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
                             break;
 
                         case R.id.rbYandex:
                             //TODO write preferred search engine
-                            boolean isYandex= mSharedPreferencesHelper.addRbutton(
+                        /*    boolean isYandex= mSharedPreferencesHelper.addRbutton(
                                     new Rbutton(
                                             checkedId,
                                             true
                                     ));
+                        */
+                            mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
                             break;
 
                         case R.id.rbBing:
-                            //TODO write preferred search engine
-                            boolean isBing= mSharedPreferencesHelper.addRbutton(
-                                    new Rbutton(
-                                            checkedId,
-                                            true
-                                    ));
+                            mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
-                             break;
+                            break;
                         default:
                             throw new IllegalArgumentException("Invalid id: " + checkedId);
                     }
