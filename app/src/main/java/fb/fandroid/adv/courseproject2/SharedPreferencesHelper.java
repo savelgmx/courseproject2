@@ -39,18 +39,20 @@ public class SharedPreferencesHelper {
     public List<Rbutton> getRbuttons() {
         List<Rbutton> rbuttons = mGson.fromJson(mSharedPreferences.getString(RBUTTONS_KEY, ""), RBUTTONS_TYPE);
         return rbuttons == null ? new ArrayList<Rbutton>() : rbuttons;
+
     }
 
     public boolean addRbutton(Rbutton rbutton) {
         List<Rbutton> rbuttons = getRbuttons();
         rbuttons.add(rbutton);
         mSharedPreferences.edit().putString(RBUTTONS_KEY, mGson.toJson(rbuttons, RBUTTONS_TYPE)).apply();
+        System.out.println(rbuttons);
+
         return true;
     }
 
 
 }
-
 
 
 /*

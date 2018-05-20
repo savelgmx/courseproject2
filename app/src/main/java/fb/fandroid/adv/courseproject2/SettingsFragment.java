@@ -40,6 +40,9 @@ public class SettingsFragment extends Fragment {
 
         mSharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
 
+        //сначала прочитаем состояние
+        mSharedPreferencesHelper.getRbuttons();
+
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
