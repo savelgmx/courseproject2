@@ -2,9 +2,11 @@ package fb.fandroid.adv.courseproject2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import static android.app.PendingIntent.getActivity;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -19,15 +21,17 @@ JSON {
  */
 
 public class SharedPreferencesHelper {
-    // это будет именем файла настроек
-    public static final String APP_PREFERENCES = "mysettings";
-    final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";
+
+    private static SharedPreferences sharedPreferences;
+    final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";// это будет именем файла настроек
     private RadioGroup radioGroup;
-    private SharedPreferences sharedPreferences;
+
+    // create one method that will instantiate sharedPreferecdes
+    private static void getSharedPreferencesInstance(Context context) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    }
 
 
-
-    //
     RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
 
         @Override
@@ -40,22 +44,15 @@ public class SharedPreferencesHelper {
         }
     };
 
-    public SharedPreferencesHelper(Context context) {
 
-        //new SharedPreferencesHelper(getApplicationContext());
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                APP_PREFERENCES, MODE_PRIVATE);
-    }
 
-    public void SavePreferences(String key, int value) {
-       // SharedPreferences sharedPreferences = context.getSharedPreferences(
-           //     APP_PREFERENCES, MODE_PRIVATE);
+    public static void SavePreferences(String key, int value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
         editor.apply();
     }
 
-    public void LoadPreferences() {
+    public void LoadPreferences(Context context) {
      //   SharedPreferences sharedPreferences = getSharedPreferences(
      //           APP_PREFERENCES, MODE_PRIVATE);
         int savedRadioIndex = sharedPreferences.getInt(

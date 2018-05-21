@@ -22,7 +22,7 @@ public class SettingsFragment extends Fragment {
 
     private RadioGroup radioGroup;
 
-    public SharedPreferencesHelper mSharedPreferencesHelper;
+
 
     public static SettingsFragment newInstance() {
         Bundle args = new Bundle();
@@ -38,11 +38,11 @@ public class SettingsFragment extends Fragment {
     {
 
 
-        mSharedPreferencesHelper = new SharedPreferencesHelper();
 
-        //сначала прочитаем состояниеmSharedPreferencesHelper.getRbuttons();getActivity()
 
-        mSharedPreferencesHelper.LoadPreferences();
+
+
+        SharedPreferencesHelper.LoadPreferences(this);//сначала прочитаем состояниеmSharedPreferencesHelper.getRbuttons();getActivity()
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
@@ -57,9 +57,6 @@ public class SettingsFragment extends Fragment {
             new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-
-
                     switch (checkedId) {
                         case R.id.rbGoogle:
                             //todo write preferred search engine
@@ -68,7 +65,7 @@ public class SettingsFragment extends Fragment {
                                             checkedId,
                                             true
                                     ));*/
-                           mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+                           SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
                             break;
 
                         case R.id.rbYandex:
@@ -79,12 +76,12 @@ public class SettingsFragment extends Fragment {
                                             true
                                     ));
                         */
-                            mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+                            SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
                             break;
 
                         case R.id.rbBing:
-                            mSharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+                            SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
                             break;
                         default:
