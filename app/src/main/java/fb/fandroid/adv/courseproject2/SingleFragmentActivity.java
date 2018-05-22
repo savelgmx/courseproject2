@@ -23,6 +23,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .replace(R.id.fragmentContainer, getFragment())
                     .commit();
         }
+
+
     }
 
     protected abstract Fragment getFragment();

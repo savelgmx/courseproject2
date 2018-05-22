@@ -3,12 +3,8 @@ package fb.fandroid.adv.courseproject2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import static android.app.PendingIntent.getActivity;
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Administrator on 08.05.2018.
@@ -23,13 +19,14 @@ JSON {
 
 public class SharedPreferencesHelper {
 
-    private static SharedPreferences sharedPreferences;
+    public  static SharedPreferences mSharedPreferences;
     final static String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";// это будет именем файла настроек
     private static RadioGroup radioGroup;
 
 
-    public SharedPreferencesHelper(SettingsFragment context) {
+    public SharedPreferencesHelper(Context context) {
         this.radioGroupOnCheckedChangeListener = radioGroupOnCheckedChangeListener;
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
@@ -45,18 +42,18 @@ public class SharedPreferencesHelper {
     };
 
 
-
     public static void SavePreferences(String key, int value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(key, value);
         editor.apply();
     }
 
-    public static void LoadPreferences(SettingsFragment context) {
-     //   SharedPreferences sharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        int savedRadioIndex = sharedPreferences.getInt(
-                KEY_RADIOBUTTON_INDEX, 0);
-        RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
+    public static void LoadPreferences(Context context) {
+
+        ///SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences();
+        int savedRadioIndex = mSharedPreferences.getInt( KEY_RADIOBUTTON_INDEX, 0);
+         RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
                 .getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
     }
