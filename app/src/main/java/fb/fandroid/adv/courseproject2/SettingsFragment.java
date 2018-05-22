@@ -1,6 +1,7 @@
 package fb.fandroid.adv.courseproject2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+
+
 
 /**
  * Created by Administrator on 04.05.2018.
@@ -40,7 +43,7 @@ public class SettingsFragment extends Fragment {
 
 
 
-
+        SharedPreferencesHelper mSharedPreferences = new SharedPreferencesHelper(this);
 
         SharedPreferencesHelper.LoadPreferences(this);//сначала прочитаем состояниеmSharedPreferencesHelper.getRbuttons();getActivity()
 
@@ -65,7 +68,7 @@ public class SettingsFragment extends Fragment {
                                             checkedId,
                                             true
                                     ));*/
-                           SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+                     //     SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
                             break;
 
                         case R.id.rbYandex:
@@ -76,12 +79,12 @@ public class SettingsFragment extends Fragment {
                                             true
                                     ));
                         */
-                            SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+     //                       SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
                             break;
 
                         case R.id.rbBing:
-                            SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+  //                          SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
                             break;
                         default:

@@ -3,6 +3,7 @@ package fb.fandroid.adv.courseproject2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -23,14 +24,13 @@ JSON {
 public class SharedPreferencesHelper {
 
     private static SharedPreferences sharedPreferences;
-    final String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";// это будет именем файла настроек
-    private RadioGroup radioGroup;
+    final static String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";// это будет именем файла настроек
+    private static RadioGroup radioGroup;
 
-    // create one method that will instantiate sharedPreferecdes
-    private static void getSharedPreferencesInstance(Context context) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+    public SharedPreferencesHelper(SettingsFragment context) {
+        this.radioGroupOnCheckedChangeListener = radioGroupOnCheckedChangeListener;
     }
-
 
     RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
 
@@ -52,9 +52,8 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
-    public void LoadPreferences(Context context) {
-     //   SharedPreferences sharedPreferences = getSharedPreferences(
-     //           APP_PREFERENCES, MODE_PRIVATE);
+    public static void LoadPreferences(SettingsFragment context) {
+     //   SharedPreferences sharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         int savedRadioIndex = sharedPreferences.getInt(
                 KEY_RADIOBUTTON_INDEX, 0);
         RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
