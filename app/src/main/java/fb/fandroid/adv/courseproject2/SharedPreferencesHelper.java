@@ -57,14 +57,16 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
-    public static void LoadPreferences(Context context) {
+    public static int LoadPreferences(Context context) {
 
         SharedPreferences mSharedPreferences = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0);
 
         int savedRadioIndex = mSharedPreferences.getInt( KEY_RADIOBUTTON_INDEX, 0);
-         RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
+        /* RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
                 .getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
+        */
+        return savedRadioIndex;
     }
 
     public static boolean saveSessionId(int FBID , Context context) {
