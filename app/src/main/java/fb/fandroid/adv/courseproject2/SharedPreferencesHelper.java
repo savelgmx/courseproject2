@@ -15,6 +15,13 @@ JSON {
  "rButtonId":"1"
  }
  http://hacksmile.com/how-to-create-android-settings-screen-using-preferencefragment/
+
+ https://www.google.ru/search?newwindow=1&q=getsharedpreferences%20in%20fragment&ved=0ahUKEwih2JfLspbbAhUM8RQKHfhtCpkQsKwBCDUoATAA&biw=1920&bih=970
+
+ https://www.google.com/search?q=getActivity.getSharedPreferences&oq=getActivity.getSharedPreferences&aqs=chrome..69i57.7424981j0j7&sourceid=chrome&ie=UTF-8
+
+ https://www.coderefer.com/android-sharedpreferences-example-tutorial/
+
  */
 
 public class SharedPreferencesHelper {
@@ -24,11 +31,11 @@ public class SharedPreferencesHelper {
     private static RadioGroup radioGroup;
 
 
-    public SharedPreferencesHelper(Context context) {
-        this.radioGroupOnCheckedChangeListener = radioGroupOnCheckedChangeListener;
-        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+ /*   public SharedPreferencesHelper(Context context) {
+       // this.radioGroupOnCheckedChangeListener = radioGroupOnCheckedChangeListener;
+     //   SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
-
+*/
     RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
 
         @Override
@@ -44,6 +51,7 @@ public class SharedPreferencesHelper {
 
     public static void SavePreferences(String key, int value) {
 
+        //SharedPreferences mSharedPreferences = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0)
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(key, value);
         editor.apply();
@@ -51,12 +59,23 @@ public class SharedPreferencesHelper {
 
     public static void LoadPreferences(Context context) {
 
-        ///SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences();
+        SharedPreferences mSharedPreferences = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0);
+
         int savedRadioIndex = mSharedPreferences.getInt( KEY_RADIOBUTTON_INDEX, 0);
          RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
                 .getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
     }
 
+    public static boolean saveSessionId(int FBID , Context context) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0).edit();
+        editor.putInt(KEY_RADIOBUTTON_INDEX , FBID);
+        return editor.commit();
+    }
 
+    public static String getSessionId(Context context) {
+        SharedPreferences savedSession = context.getSharedPreferences(
+                KEY_RADIOBUTTON_INDEX, 0);
+        return savedSession.getString(KEY_RADIOBUTTON_INDEX , null);
+    }
 }

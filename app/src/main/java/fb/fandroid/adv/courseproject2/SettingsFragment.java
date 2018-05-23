@@ -1,6 +1,7 @@
 package fb.fandroid.adv.courseproject2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,10 +39,8 @@ public class SettingsFragment extends Fragment {
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
 
-        SharedPreferencesHelper mSharedPreferences = new SharedPreferencesHelper(getActivity());
-
-
-        SharedPreferencesHelper.LoadPreferences(getActivity());//сначала прочитаем состояниеmSharedPreferencesHelper.getRbuttons();getActivity()
+       // SharedPreferencesHelper.getSessionId(getContext());
+        SharedPreferencesHelper.LoadPreferences(getContext());
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
@@ -65,6 +64,8 @@ public class SettingsFragment extends Fragment {
                                             true
                                     ));*/
                      //     SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+                            SharedPreferencesHelper.saveSessionId(checkedId,getContext());
+
                             break;
 
                         case R.id.rbYandex:
