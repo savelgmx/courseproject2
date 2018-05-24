@@ -47,6 +47,8 @@ public class SettingsFragment extends Fragment {
 
         Log.i("CheckedRadoButtonID", String.valueOf(CheckedRadioButtonId));
 
+        Log.i("GetSessionID",String.valueOf(SharedPreferencesHelper.getSessionId(getContext())));
+
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
@@ -69,6 +71,9 @@ public class SettingsFragment extends Fragment {
                                             true
                                     ));*/
                      //     SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+
+                            Log.i("checkedId", String.valueOf(checkedId));
+
                             SharedPreferencesHelper.saveSessionId(checkedId,getContext());
 
                             break;

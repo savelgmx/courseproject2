@@ -2,7 +2,7 @@ package fb.fandroid.adv.courseproject2;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -31,11 +31,6 @@ public class SharedPreferencesHelper {
     private static RadioGroup radioGroup;
 
 
- /*   public SharedPreferencesHelper(Context context) {
-       // this.radioGroupOnCheckedChangeListener = radioGroupOnCheckedChangeListener;
-     //   SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-    }
-*/
     RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
 
         @Override
@@ -51,7 +46,6 @@ public class SharedPreferencesHelper {
 
     public static void SavePreferences(String key, int value) {
 
-        //SharedPreferences mSharedPreferences = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0)
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(key, value);
         editor.apply();
@@ -70,14 +64,18 @@ public class SharedPreferencesHelper {
     }
 
     public static boolean saveSessionId(int FBID , Context context) {
+
+        Log.i("saveSessionID", String.valueOf(FBID));
+
         SharedPreferences.Editor editor = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0).edit();
         editor.putInt(KEY_RADIOBUTTON_INDEX , FBID);
         return editor.commit();
     }
 
-    public static String getSessionId(Context context) {
+    public static int getSessionId(Context context) {
         SharedPreferences savedSession = context.getSharedPreferences(
                 KEY_RADIOBUTTON_INDEX, 0);
-        return savedSession.getString(KEY_RADIOBUTTON_INDEX , null);
+        return Integer.valueOf(savedSession.getString(KEY_RADIOBUTTON_INDEX , null));
+//        return savedSession.getInt(KEY_RADIOBUTTON_INDEX , Integer.parseInt(null));
     }
 }
