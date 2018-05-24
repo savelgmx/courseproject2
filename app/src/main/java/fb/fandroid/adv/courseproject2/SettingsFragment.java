@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
@@ -24,6 +25,7 @@ import android.widget.RadioGroup;
 public class SettingsFragment extends Fragment {
 
     private RadioGroup radioGroup;
+    private int CheckedRadioButtonId;
 
 
 
@@ -40,20 +42,31 @@ public class SettingsFragment extends Fragment {
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
 
-       // SharedPreferencesHelper.getSessionId(getContext());
 
-
-        int CheckedRadioButtonId=SharedPreferencesHelper.LoadPreferences(getContext());
-
-        Log.i("CheckedRadoButtonID", String.valueOf(CheckedRadioButtonId));
-
+        CheckedRadioButtonId=SharedPreferencesHelper.getSessionId(getContext());
         Log.i("GetSessionID",String.valueOf(SharedPreferencesHelper.getSessionId(getContext())));
+
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
-        radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
+         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
+
+
+   //     SetSavedRadioButtonChecked(CheckedRadioButtonId);
+
+
         return view;
     }
+
+    /* устанавливает предпочитаемый RadioButton согласно сохраненному Id
+    */
+
+    private void SetSavedRadioButtonChecked(int savedRadioIndex){
+        RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
+                .getChildAt(savedRadioIndex);
+        savedCheckedRadioButton.setChecked(true);
+    }
+
 
     /**
      * Listener для отслеживания выбора RadioButton
@@ -64,34 +77,23 @@ public class SettingsFragment extends Fragment {
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     switch (checkedId) {
                         case R.id.rbGoogle:
-                            //todo write preferred search engine
-                          /*  boolean isGoogle= mSharedPreferencesHelper.addRbutton(
-                                    new Rbutton(
-                                            checkedId,
-                                            true
-                                    ));*/
-                     //     SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
 
                             Log.i("checkedId", String.valueOf(checkedId));
-
                             SharedPreferencesHelper.saveSessionId(checkedId,getContext());
 
                             break;
 
                         case R.id.rbYandex:
-                            //TODO write preferred search engine
-                        /*    boolean isYandex= mSharedPreferencesHelper.addRbutton(
-                                    new Rbutton(
-                                            checkedId,
-                                            true
-                                    ));
-                        */
-     //                       SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+
+                            Log.i("checkedId", String.valueOf(checkedId));
+                            SharedPreferencesHelper.saveSessionId(checkedId,getContext());
 
                             break;
 
                         case R.id.rbBing:
-  //                          SharedPreferencesHelper.SavePreferences("SAVED_RADIO_BUTTON_INDEX",checkedId);
+
+                            Log.i("checkedId", String.valueOf(checkedId));
+                            SharedPreferencesHelper.saveSessionId(checkedId,getContext());
 
                             break;
                         default:

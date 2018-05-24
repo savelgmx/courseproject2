@@ -28,10 +28,10 @@ public class SharedPreferencesHelper {
 
     public  static SharedPreferences mSharedPreferences;
     final static String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";// это будет именем файла настроек
-    private static RadioGroup radioGroup;
+  //  private static RadioGroup radioGroup;
 
 
-    RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
+   /* RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
 
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -44,6 +44,7 @@ public class SharedPreferencesHelper {
     };
 
 
+
     public static void SavePreferences(String key, int value) {
 
         SharedPreferences.Editor editor = mSharedPreferences.edit();
@@ -51,18 +52,7 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
-    public static int LoadPreferences(Context context) {
-
-        SharedPreferences mSharedPreferences = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0);
-
-        int savedRadioIndex = mSharedPreferences.getInt( KEY_RADIOBUTTON_INDEX, 0);
-        /* RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
-                .getChildAt(savedRadioIndex);
-        savedCheckedRadioButton.setChecked(true);
-        */
-        return savedRadioIndex;
-    }
-
+*/
     public static boolean saveSessionId(int FBID , Context context) {
 
         Log.i("saveSessionID", String.valueOf(FBID));
@@ -73,9 +63,7 @@ public class SharedPreferencesHelper {
     }
 
     public static int getSessionId(Context context) {
-        SharedPreferences savedSession = context.getSharedPreferences(
-                KEY_RADIOBUTTON_INDEX, 0);
-        return Integer.valueOf(savedSession.getString(KEY_RADIOBUTTON_INDEX , null));
-//        return savedSession.getInt(KEY_RADIOBUTTON_INDEX , Integer.parseInt(null));
+        SharedPreferences savedSession = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0);
+        return savedSession.getInt(KEY_RADIOBUTTON_INDEX , 0);
     }
 }
