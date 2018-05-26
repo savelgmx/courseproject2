@@ -14,7 +14,7 @@ public class Rbutton implements Serializable {
 		rButtonId=buttonID;
 		rButtonChecked=buttonChecked;
 
-	}
+ 	}
 
 	public void setRButtonId(int rButtonId){
 		this.rButtonId = rButtonId;

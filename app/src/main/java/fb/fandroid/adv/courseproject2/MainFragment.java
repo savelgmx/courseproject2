@@ -70,7 +70,6 @@ public static boolean isOnline(Context context)
         // Операции для выбранного пункта меню
         switch (id) {
             case R.id.action_settings:
-               // showMessage("Вы выбрали пункт Настройки");
 
                 //---launch settings fragment----
 
@@ -84,7 +83,6 @@ public static boolean isOnline(Context context)
 
                 return true;
             case R.id.action_search:
-                //showMessage("Вы выбрали Поиск");
                     if( isOnline(getContext())) {
                         Uri uri = Uri.parse("http://google.com/search?q=haruhi");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
