@@ -3,8 +3,6 @@ package fb.fandroid.adv.courseproject2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 /**
  * Created by Administrator on 08.05.2018.
@@ -28,34 +26,9 @@ public class SharedPreferencesHelper {
 
     public  static SharedPreferences mSharedPreferences;
     final static String KEY_RADIOBUTTON_INDEX = "SAVED_RADIO_BUTTON_INDEX";// это будет именем файла настроек
-  //  private static RadioGroup radioGroup;
-
-
-   /* RadioGroup.OnCheckedChangeListener radioGroupOnCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
-
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-            RadioButton checkedRadioButton = (RadioButton) radioGroup.findViewById(checkedId);
-            int checkedIndex = radioGroup.indexOfChild(checkedRadioButton);
-
-            SavePreferences(KEY_RADIOBUTTON_INDEX, checkedIndex);
-        }
-    };
-
-
-
-    public static void SavePreferences(String key, int value) {
-
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putInt(key, value);
-        editor.apply();
-    }
-
-*/
     public static boolean saveSessionId(int FBID , Context context) {
 
-        Log.i("saveSessionID", String.valueOf(FBID));
+        Log.i("saveSessionId", String.valueOf(FBID));
 
         SharedPreferences.Editor editor = context.getSharedPreferences(KEY_RADIOBUTTON_INDEX, 0).edit();
         editor.putInt(KEY_RADIOBUTTON_INDEX , FBID);

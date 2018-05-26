@@ -1,7 +1,6 @@
 package fb.fandroid.adv.courseproject2;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,7 +24,7 @@ import android.widget.RadioGroup;
 public class SettingsFragment extends Fragment {
 
     private RadioGroup radioGroup;
-    private int CheckedRadioButtonId;
+    private int CheckedRadioButtonIndex;
 
 
 
@@ -43,16 +42,15 @@ public class SettingsFragment extends Fragment {
     {
 
 
-        CheckedRadioButtonId=SharedPreferencesHelper.getSessionId(getContext());
-        Log.i("GetSessionID",String.valueOf(SharedPreferencesHelper.getSessionId(getContext())));
+        CheckedRadioButtonIndex=SharedPreferencesHelper.getSessionId(getContext());
+        Log.i("GetSessionId",String.valueOf(SharedPreferencesHelper.getSessionId(getContext())));
 
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
          radioGroup =  view.findViewById(R.id.radioGroup);
          radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
 
-
-   //     SetSavedRadioButtonChecked(CheckedRadioButtonId);
+         SetSavedRadioButtonChecked(CheckedRadioButtonIndex);
 
 
         return view;
@@ -75,30 +73,14 @@ public class SettingsFragment extends Fragment {
             new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch (checkedId) {
-                        case R.id.rbGoogle:
 
-                            Log.i("checkedId", String.valueOf(checkedId));
-                            SharedPreferencesHelper.saveSessionId(checkedId,getContext());
+                    RadioButton checkedRadioButton = (RadioButton) radioGroup
+                            .findViewById(checkedId);
+                    int checkedIndex = radioGroup.indexOfChild(checkedRadioButton);
 
-                            break;
+                    Log.i("checkedIndexId",String.valueOf(checkedIndex));
 
-                        case R.id.rbYandex:
-
-                            Log.i("checkedId", String.valueOf(checkedId));
-                            SharedPreferencesHelper.saveSessionId(checkedId,getContext());
-
-                            break;
-
-                        case R.id.rbBing:
-
-                            Log.i("checkedId", String.valueOf(checkedId));
-                            SharedPreferencesHelper.saveSessionId(checkedId,getContext());
-
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Invalid id: " + checkedId);
-                    }
+                    SharedPreferencesHelper.saveSessionId(checkedIndex,getContext());
 
                     Context context = getActivity();
 
