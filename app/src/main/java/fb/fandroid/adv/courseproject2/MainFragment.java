@@ -1,10 +1,8 @@
 package fb.fandroid.adv.courseproject2;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -84,10 +82,16 @@ public static boolean isOnline(Context context)
                 return true;
             case R.id.action_search:
                     if( isOnline(getContext())) {
-                        Uri uri = Uri.parse("http://google.com/search?q=haruhi");
-                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                        getActivity().finish();
+
+                      //-----launch SearchFragment---------------
+                     getFragmentManager()
+                             .beginTransaction()
+                             .replace(R.id.fragmentContainer,SearchFragment.newInstance())
+                             .addToBackStack(SearchFragment.class.getName())
+                             .commit();
+                        //----end of launch transaction---------------
+
+
                     } else showMessage("Доступ в интернет отсутствует");
 
                 return true;
