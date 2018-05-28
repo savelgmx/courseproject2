@@ -8,18 +8,6 @@ import android.util.Log;
  * Created by Administrator on 08.05.2018.
  * предназначен для хранения настроек на предпочитаемую поисковую машину
  * google yandex bing
-JSON {
- "rButtonChecked":true,
- "rButtonId":"1"
- }
- http://hacksmile.com/how-to-create-android-settings-screen-using-preferencefragment/
-
- https://www.google.ru/search?newwindow=1&q=getsharedpreferences%20in%20fragment&ved=0ahUKEwih2JfLspbbAhUM8RQKHfhtCpkQsKwBCDUoATAA&biw=1920&bih=970
-
- https://www.google.com/search?q=getActivity.getSharedPreferences&oq=getActivity.getSharedPreferences&aqs=chrome..69i57.7424981j0j7&sourceid=chrome&ie=UTF-8
-
- https://www.coderefer.com/android-sharedpreferences-example-tutorial/
-
  */
 
 public class SharedPreferencesHelper {

@@ -86,31 +86,24 @@ public class SearchFragment extends Fragment {
 
             if (IsEditTextEmpty()) {////если текст в EditText присутсвует то запуск процедуры поиска
                 /// иначе выдает подсказку на экран
-
                 switch (LoadSharedPreferences()) {
 
 
                     case 0: //Google index
-
                         Uri uri = Uri.parse("http://google.com/search?q=" + mEditTextOne.getText());
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        getActivity().finish();
-                        break;
+                         break;
                     case 1: //Yandex index
                          Uri uri1 = Uri.parse("https://yandex.ru/search/?text=" + mEditTextOne.getText());
                         Intent intent1 = new Intent(Intent.ACTION_VIEW, uri1);
                         startActivity(intent1);
-                        getActivity().finish();
-
-                        break;
-
+                         break;
                     case 2: //Bing index
                         Uri uri2 = Uri.parse("https://www.bing.com/search?q=" + mEditTextOne.getText());
                         Intent intent2 = new Intent(Intent.ACTION_VIEW, uri2);
                         startActivity(intent2);
-                        getActivity().finish();
-                        break;
+                         break;
                 }
 
 

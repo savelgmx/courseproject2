@@ -33,18 +33,17 @@ public class MainFragment extends Fragment {
     private void showMessage(String string) {
         Toast.makeText(getActivity(), string, Toast.LENGTH_LONG).show();
     }
-/*проверка доступности Internet соединения*/
-public static boolean isOnline(Context context)
-{
-    ConnectivityManager cm =
-            (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-    if (netInfo != null && netInfo.isConnectedOrConnecting())
-    {
-        return true;
+
+    /*проверка доступности Internet соединения*/
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
-    return false;
-}
 
 
     @Override
@@ -81,22 +80,23 @@ public static boolean isOnline(Context context)
 
                 return true;
             case R.id.action_search:
-                    if( isOnline(getContext())) {
+                if (isOnline(getContext())) {
 
-                      //-----launch SearchFragment---------------
-                     getFragmentManager()
-                             .beginTransaction()
-                             .replace(R.id.fragmentContainer,SearchFragment.newInstance())
-                             .addToBackStack(SearchFragment.class.getName())
-                             .commit();
-                        //----end of launch transaction---------------
+                    //-----launch SearchFragment---------------
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragmentContainer, SearchFragment.newInstance())
+                            .addToBackStack(SearchFragment.class.getName())
+                            .commit();
+                    //----end of launch transaction---------------
 
 
-                    } else showMessage("Доступ в интернет отсутствует");
+                } else showMessage("Доступ в интернет отсутствует");
 
                 return true;
             case R.id.action_exit:
-                showMessage("Вы выбрали Выход");
+                // showMessage("Вы выбрали Выход");
+                getActivity().finish(); //убиваем текущую Активити
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -112,7 +112,7 @@ public static boolean isOnline(Context context)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view=inflater.inflate(R.layout.fr_main, container, false);
+        View view = inflater.inflate(R.layout.fr_main, container, false);
         return view;
     }
 

@@ -5,11 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
 /*
 Абстактный класс базовый для всех трех фрагментов данного приложения
 На его основе может быть произвольноее число фрагментов
 Инициализирует контейнер для фрагментов в методе OnCreate
-Заканчивает работу приложения если Back button pressed
+Заканчивает работу приложения если Back button pressed и если нет другой активити/фрагмента
  */
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
@@ -24,7 +25,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .commit();
         }
 
-
     }
 
     protected abstract Fragment getFragment();
@@ -32,10 +32,12 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() == 1) {
+         if (fragmentManager.getBackStackEntryCount() == 0) {
             finish();
         } else {
             fragmentManager.popBackStack();
+
         }
     }
+
 }

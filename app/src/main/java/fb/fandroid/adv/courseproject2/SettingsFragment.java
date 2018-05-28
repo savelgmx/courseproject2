@@ -17,15 +17,12 @@ import android.widget.RadioGroup;
  * Created by Administrator on 04.05.2018.
  * необходим для показа экрана с выбром посковой машины
  * fr_settings  и для запоминапния настроек в SharedPreferences
- *
- *
  */
 
 public class SettingsFragment extends Fragment {
 
     private RadioGroup radioGroup;
     private int CheckedRadioButtonIndex;
-
 
 
     public static SettingsFragment newInstance() {
@@ -38,19 +35,18 @@ public class SettingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        CheckedRadioButtonIndex=SharedPreferencesHelper.getSessionId(getContext());
-        Log.i("GetSessionId",String.valueOf(SharedPreferencesHelper.getSessionId(getContext())));
+        CheckedRadioButtonIndex = SharedPreferencesHelper.getSessionId(getContext());
+        Log.i("GetSessionId", String.valueOf(SharedPreferencesHelper.getSessionId(getContext())));
 
 
         View view = inflater.inflate(R.layout.fr_settings, container, false);
-         radioGroup =  view.findViewById(R.id.radioGroup);
-         radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
+        radioGroup = view.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
 
-         SetSavedRadioButtonChecked(CheckedRadioButtonIndex);
+        SetSavedRadioButtonChecked(CheckedRadioButtonIndex);
 
 
         return view;
@@ -59,7 +55,7 @@ public class SettingsFragment extends Fragment {
     /* устанавливает предпочитаемый RadioButton согласно сохраненному Id
     */
 
-    private void SetSavedRadioButtonChecked(int savedRadioIndex){
+    private void SetSavedRadioButtonChecked(int savedRadioIndex) {
         RadioButton savedCheckedRadioButton = (RadioButton) radioGroup
                 .getChildAt(savedRadioIndex);
         savedCheckedRadioButton.setChecked(true);
@@ -78,9 +74,9 @@ public class SettingsFragment extends Fragment {
                             .findViewById(checkedId);
                     int checkedIndex = radioGroup.indexOfChild(checkedRadioButton);
 
-                    Log.i("checkedIndexId",String.valueOf(checkedIndex));
+                    Log.i("checkedIndexId", String.valueOf(checkedIndex));
 
-                    SharedPreferencesHelper.saveSessionId(checkedIndex,getContext());
+                    SharedPreferencesHelper.saveSessionId(checkedIndex, getContext());
 
                     Context context = getActivity();
 
